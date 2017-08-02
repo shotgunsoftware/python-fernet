@@ -55,7 +55,7 @@ class Fernet:
 
         basic_parts = (b"\x80" + struct.pack(">Q", current_time) + iv + ciphertext)
 
-        hmactext = hmac.new(self._signing_key, '',hashlib.sha25)
+        hmactext = hmac.new(self._signing_key, '',hashlib.sha256)
         hmactext.update(basic_parts)
 
         return base64.urlsafe_b64encode(basic_parts + hmactext.digest())
